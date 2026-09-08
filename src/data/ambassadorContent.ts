@@ -138,13 +138,7 @@ export const ambassadorGuideGroups: readonly AmbassadorGroup[] = [
         id: 'lien-he-dat-universal',
         groupId: 'trung-tam-ho-tro',
         title: 'Liên hệ DAT Universal',
-        articles: [
-          {id: 'hotline', title: 'Hotline', kind: 'guide', status: updating},
-          {id: 'mail', title: 'Mail', kind: 'guide', status: updating},
-          {id: 'zalo', title: 'Zalo', kind: 'guide', status: updating},
-          {id: 'thoi-gian-ho-tro', title: 'Thời gian hỗ trợ', kind: 'guide', status: updating},
-          {id: 'chuyen-vien-ho-tro', title: 'Chuyên viên hỗ trợ', kind: 'guide', status: updating},
-        ],
+        articles: [],
       },
       {
         id: 'thong-bao-va-cap-nhat',
