@@ -435,7 +435,7 @@ body {
   margin-bottom: 0;
 }
 
-.theme-doc-markdown p:has(> img) + p > em:only-child {
+.theme-doc-markdown p:has(> img) > em:only-child {
   display: block;
   margin-top: -1.75rem;
   margin-bottom: 2rem;
