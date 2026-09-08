@@ -431,6 +431,18 @@ body {
   margin: 2rem 0;
 }
 
+.theme-doc-markdown p:has(> img) {
+  margin-bottom: 0;
+}
+
+.theme-doc-markdown p:has(> img) + p > em:only-child {
+  display: block;
+  margin-top: -1.75rem;
+  margin-bottom: 2rem;
+  color: var(--dat-muted);
+  text-align: center;
+}
+
 .doc-site-identity {
   margin: 0 0 0.85rem;
   color: var(--dat-blue-dark);
