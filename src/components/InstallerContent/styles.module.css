@@ -1,0 +1,23 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.grid .card {
+  min-height: 7rem;
+  justify-content: center;
+}
+
+.grid .card h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+}

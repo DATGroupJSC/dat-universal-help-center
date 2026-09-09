@@ -20,6 +20,8 @@ Chỉ thêm quy trình, chính sách, SLA, giá, bảo hành hoặc thông số 
 
 ## Thêm hoặc sửa một bài
 
+Khu vực Nhà lắp đặt gồm năm nhóm: Bắt đầu với DAT Universal; Hướng dẫn sử dụng nền tảng (có sáu bước thao tác); SLA và cảnh báo; Tiêu chuẩn lắp đặt; Trung tâm hỗ trợ. Danh mục nằm trong `src/data/installerContent.ts`, bài viết trong `docs/nha-lap-dat/`. Các bài chưa có nội dung chính thức hiển thị Coming soon; thay nội dung ngay trong file MDX tương ứng khi đã được duyệt. Cấu trúc này được chốt theo agenda đào tạo Installer trong phiên làm việc.
+
 1. Trên GitHub, tạo branch mới từ `main`, ví dụ `content/huong-dan-referral`.
 2. Mở đúng thư mục nhóm người đọc. Ví dụ, bài cho Đại sứ xanh nằm trong `docs/dai-su-xanh/`.
 3. Sao chép `docs/_templates/huong-dan.mdx`, đổi tên file theo nội dung không dấu và dùng dấu gạch ngang, ví dụ `cach-gioi-thieu-khach-hang.mdx`.
