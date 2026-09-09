@@ -3,6 +3,7 @@ import {resolve} from 'node:path';
 import {describe, expect, it} from 'vitest';
 import sidebars from '../../sidebars';
 import {ambassadorGuideGroups} from '../../src/data/ambassadorContent';
+import {installerSteps} from '../../src/data/installerContent';
 
 type AmbassadorSidebarItem = {
   label?: string;
@@ -13,6 +14,17 @@ type AmbassadorSidebarItem = {
 };
 
 describe('Đại sứ xanh content navigation', () => {
+  it('keeps the Installer workflow in the approved six-step order', () => {
+    expect(installerSteps.map((step) => step.title)).toEqual([
+      'Bước 1: Liên hệ và chốt lịch khảo sát',
+      'Bước 2: Khảo sát và báo giá',
+      'Bước 3: Thông tin hợp đồng',
+      'Bước 4: Thi công',
+      'Bước 5: Bàn giao',
+      'Bước 6: Nghiệm thu (Hoàn thành)',
+    ]);
+  });
+
   it('keeps source-safe article metadata and marks published articles accurately', () => {
     const articles = ambassadorGuideGroups.flatMap((group) =>
       group.topics.flatMap((topic) => topic.articles),

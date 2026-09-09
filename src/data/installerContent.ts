@@ -98,27 +98,26 @@ export const installerGuideGroups = [
 export const installerSteps = [
   {
     "id": "tiep-nhan",
-    "title": "Bước 1: Tiếp nhận Phiếu khảo sát"
+    "title": "Bước 1: Liên hệ và chốt lịch khảo sát"
   },
   {
     "id": "chot-lich",
-    "title": "Bước 2: Liên hệ và chốt lịch khảo sát"
+    "title": "Bước 2: Khảo sát và báo giá"
   },
   {
     "id": "khao-sat-bao-gia",
-    "title": "Bước 3: Khảo sát và gửi báo giá"
+    "title": "Bước 3: Thông tin hợp đồng"
   },
   {
     "id": "hop-dong",
-    "title": "Bước 4: Cập nhật thông tin hợp đồng"
+    "title": "Bước 4: Thi công"
   },
   {
     "id": "lich-thi-cong",
-    "title": "Bước 5: Cập nhật lịch thi công"
+    "title": "Bước 5: Bàn giao"
   },
   {
     "id": "ban-giao",
-    "title": "Bước 6: Bàn giao và hoàn tất hồ sơ"
+    "title": "Bước 6: Nghiệm thu (Hoàn thành)"
   }
 ];
-
