@@ -345,6 +345,29 @@ test('guide shows left sidebar and right table of contents', async ({
   await expect(page.locator('.table-of-contents')).toBeVisible();
 });
 
+test('installer six-step article shows its right table of contents', async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(Boolean(isMobile), 'Desktop-only table of contents assertion');
+  await page.goto(
+    `${sitePath}/huong-dan/nha-lap-dat/su-dung-nen-tang/sau-buoc/tiep-nhan`,
+  );
+
+  await expect(
+    page.getByRole('heading', {
+      name: 'Bước 1: Liên hệ và chốt lịch khảo sát',
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.locator('.table-of-contents')).toBeVisible();
+  await expect(
+    page.locator('.table-of-contents').getByText('Chốt lịch khảo sát', {
+      exact: true,
+    }),
+  ).toBeVisible();
+});
+
 test('desktop docs use a centered Antsomi shell without navbar identity', async ({
   page,
   isMobile,
