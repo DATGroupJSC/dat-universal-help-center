@@ -336,10 +336,10 @@ test('guide shows left sidebar and right table of contents', async ({
   isMobile,
 }) => {
   test.skip(Boolean(isMobile), 'Desktop-only three-column assertion');
-  await page.goto(`${sitePath}${ambassadorStart}`);
+  await page.goto(`${sitePath}${ambassadorStart}/tao-tai-khoan`);
 
   await expect(
-    page.getByRole('heading', {name: 'Chào mừng Đại sứ xanh'}),
+    page.getByRole('heading', {name: 'Tạo tài khoản', exact: true}),
   ).toBeVisible();
   await expect(page.locator('.theme-doc-sidebar-container')).toBeVisible();
   await expect(page.locator('.table-of-contents')).toBeVisible();
@@ -351,7 +351,7 @@ test('desktop docs use a centered Antsomi shell without navbar identity', async 
 }) => {
   test.skip(Boolean(isMobile), 'Desktop-only Antsomi shell assertion');
   await page.setViewportSize({width: 1920, height: 1080});
-  await page.goto(`${sitePath}${ambassadorStart}`);
+  await page.goto(`${sitePath}${ambassadorStart}/tao-tai-khoan`);
 
   const shell = page.locator('.dat-doc-shell');
   await expect(shell).toBeVisible();
@@ -491,7 +491,7 @@ test('documentation uses the approved spacious three-column DAT layout', async (
   isMobile,
 }) => {
   test.skip(Boolean(isMobile), 'Desktop-only documentation layout assertion');
-  await page.goto(`${sitePath}${ambassadorStart}`);
+  await page.goto(`${sitePath}${ambassadorStart}/tao-tai-khoan`);
 
   await expect(page.locator('.navbar')).toHaveCSS(
     'background-color',
