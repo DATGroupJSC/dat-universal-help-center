@@ -21,7 +21,7 @@
 **Files:**
 - Modify: `tests/unit/ambassador-content.test.ts`
 
-- [ ] **Step 1: Add the Installer data import and the expected sequence test**
+- [x] **Step 1: Add the Installer data import and the expected sequence test**
 
 ```ts
 import {installerSteps} from '../../src/data/installerContent';
@@ -38,7 +38,7 @@ it('keeps the Installer workflow in the approved six-step order', () => {
 });
 ```
 
-- [ ] **Step 2: Run the focused unit test to verify it fails**
+- [x] **Step 2: Run the focused unit test to verify it fails**
 
 Run: `npm run test -- tests/unit/ambassador-content.test.ts`
 
@@ -55,7 +55,7 @@ Expected: FAIL because the current data includes “Tiếp nhận Phiếu khảo
 - Modify: `docs/nha-lap-dat/su-dung-nen-tang/sau-buoc/lich-thi-cong.mdx`
 - Modify: `docs/nha-lap-dat/su-dung-nen-tang/sau-buoc/ban-giao.mdx`
 
-- [ ] **Step 1: Replace the six display titles without renaming IDs or files**
+- [x] **Step 1: Replace the six display titles without renaming IDs or files**
 
 ```ts
 export const installerSteps = [
@@ -68,17 +68,17 @@ export const installerSteps = [
 ];
 ```
 
-- [ ] **Step 2: Apply the same title to the frontmatter of each corresponding MDX page**
+- [x] **Step 2: Apply the same title to the frontmatter of each corresponding MDX page**
 
 Each page keeps its `Coming soon` content and filename. The filename serves as the stable URL; only the visible page title changes.
 
-- [ ] **Step 3: Run the focused test to verify it passes**
+- [x] **Step 3: Run the focused test to verify it passes**
 
 Run: `npm run test -- tests/unit/ambassador-content.test.ts`
 
 Expected: PASS.
 
-- [ ] **Step 4: Commit the aligned data, page titles, and test**
+- [x] **Step 4: Commit the aligned data, page titles, and test**
 
 ```bash
 git add src/data/installerContent.ts docs/nha-lap-dat/su-dung-nen-tang/sau-buoc tests/unit/ambassador-content.test.ts
@@ -91,19 +91,19 @@ git commit -m "fix: align installer workflow six steps"
 - Verify: `sidebars.ts`
 - Verify: `src/components/InstallerContent/index.tsx`
 
-- [ ] **Step 1: Run type and production validation**
+- [x] **Step 1: Run type and production validation**
 
 Run: `npm run typecheck; npm run build`
 
 Expected: both commands exit with code 0 and the build reports no duplicate routes or broken links.
 
-- [ ] **Step 2: Inspect the local Installer six-step page**
+- [x] **Step 2: Inspect the local Installer six-step page**
 
 Open: `/huong-dan/nha-lap-dat/su-dung-nen-tang/sau-buoc`
 
 Expected: cards and the left menu display the six approved labels in order, with no “Tiếp nhận Phiếu khảo sát” or “Đồng bộ dự án” card.
 
-- [ ] **Step 3: Push the branch and update Pull Request #29**
+- [x] **Step 3: Push the branch and update Pull Request #29**
 
 Run: `git push origin feat/installer-guide-structure`
 
