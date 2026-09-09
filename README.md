@@ -69,6 +69,7 @@ npm run test:e2e
 - [2026-08-14 — Kế hoạch triển khai nội dung Đại sứ xanh](planning/plans/2026-08-14-dai-su-xanh-content-architecture.md): tạo menu hai cấp, trang chủ đề, bài viết “Đang cập nhật” và chuyển hướng link cũ.
 - [2026-08-14 — Cấu trúc nội dung Đại sứ xanh](planning/specs/2026-08-14-dai-su-xanh-content-architecture-design.md): menu hai cấp, danh mục bài viết và quy ước sử dụng trạng thái “Đang cập nhật”.
 - [2026-08-17 — Sidebar DAT và bài minh hoạ](planning/specs/2026-08-17-dat-sidebar-and-sample-articles-design.md): menu ba cấp theo phong cách Antsomi, favicon DAT và mẫu trình bày an toàn cho bài chi tiết.
+- [2026-09-09 — Hoàn thiện nội dung sáu bước Nhà lắp đặt](planning/specs/2026-09-09-installer-six-step-content-refinement.md): phạm vi nội dung, vị trí ảnh và quy tắc dùng thông tin từ slide đào tạo.
 
 ## GitHub Pages và custom domain
 

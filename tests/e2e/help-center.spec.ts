@@ -368,6 +368,57 @@ test('installer six-step article shows its right table of contents', async ({
   ).toBeVisible();
 });
 
+test('installer six-step guidance keeps the approved source-based content', async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(Boolean(isMobile), 'Desktop-only article structure assertion');
+
+  await page.goto(
+    `${sitePath}/huong-dan/nha-lap-dat/su-dung-nen-tang/sau-buoc/tiep-nhan`,
+  );
+  await expect(
+    page
+      .locator('.theme-doc-markdown h2')
+      .filter({hasText: 'Đăng nhập hệ thống'}),
+  ).toHaveCount(0);
+
+  await page.goto(
+    `${sitePath}/huong-dan/nha-lap-dat/su-dung-nen-tang/sau-buoc/chot-lich`,
+  );
+  await expect(page.getByText(/Zalo, email hoặc gặp trực tiếp/)).toBeVisible();
+
+  await page.goto(
+    `${sitePath}/huong-dan/nha-lap-dat/su-dung-nen-tang/sau-buoc/khao-sat-bao-gia`,
+  );
+  const equipment = page
+    .locator('.theme-doc-markdown h2')
+    .filter({hasText: 'Cập nhật thiết bị'});
+  const illustration = page.getByAltText(
+    'Các vùng cập nhật thông tin và báo giá hợp đồng',
+  );
+  const quotation = page
+    .locator('.theme-doc-markdown h2')
+    .filter({hasText: 'Cập nhật báo giá và thông tin hợp đồng'});
+  const [equipmentBox, illustrationBox, quotationBox] = await Promise.all([
+    equipment.boundingBox(),
+    illustration.boundingBox(),
+    quotation.boundingBox(),
+  ]);
+  if (!equipmentBox || !illustrationBox || !quotationBox) {
+    throw new Error('Expected the Bước 3 headings and illustration to render');
+  }
+  expect(equipmentBox.y).toBeLessThan(illustrationBox.y);
+  expect(illustrationBox.y).toBeLessThan(quotationBox.y);
+
+  await page.goto(
+    `${sitePath}/huong-dan/nha-lap-dat/su-dung-nen-tang/sau-buoc/ban-giao`,
+  );
+  await expect(
+    page.getByAltText('Màn hình nghiệm thu hoàn thành trên DAT Universal'),
+  ).toBeVisible();
+});
+
 test('desktop docs use a centered Antsomi shell without navbar identity', async ({
   page,
   isMobile,
