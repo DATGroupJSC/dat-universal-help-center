@@ -87,11 +87,11 @@ const config: Config = {
             from: '/huong-dan/dai-su-xanh/bat-dau/dai-su-xanh-la-gi',
           },
           {
-            to: '/huong-dan/dai-su-xanh/gia-nhap-he-sinh-thai',
+            to: ambassadorStart,
             from: '/huong-dan/bat-dau',
           },
           {
-            to: '/huong-dan/dai-su-xanh/gia-nhap-he-sinh-thai',
+            to: ambassadorStart,
             from: '/huong-dan/dai-su-xanh/bat-dau',
           },
           {
