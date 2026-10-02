@@ -255,9 +255,9 @@ test('Ambassador guide links align directly under their main groups', async ({
 
   const sidebar = page.locator('.theme-doc-sidebar-container');
   const directLinks = [
-    'Thay đổi thông tin tài khoản',
-    'Câu hỏi thường gặp',
-    'Quy định xử lý vi phạm',
+    'Cách chia sẻ lên Facebook/Zalo',
+    'Tạo khách hàng',
+    'Mẹo tìm khách hàng',
   ];
   const boxes = await Promise.all(
     directLinks.map((label) =>

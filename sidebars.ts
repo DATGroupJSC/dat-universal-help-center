@@ -4,6 +4,10 @@ import {installerGuideGroups, installerSteps} from './src/data/installerContent'
 
 const topicDocId = (groupId: string, topicId: string) =>
   `dai-su-xanh/${groupId}/${topicId}/index`;
+const welcomeDocId = topicDocId(
+  'gia-nhap-he-sinh-thai',
+  'chao-mung-dai-su-xanh',
+);
 
 const daiSuXanhSidebar = ambassadorGuideGroups.map((group) => ({
   type: 'category' as const,
@@ -12,9 +16,13 @@ const daiSuXanhSidebar = ambassadorGuideGroups.map((group) => ({
   collapsible: true,
   collapsed: false,
   link: {
-    type: 'generated-index' as const,
-    title: group.title,
-    slug: `/dai-su-xanh/${group.id}`,
+    ...(group.id === 'gia-nhap-he-sinh-thai'
+      ? {type: 'doc' as const, id: welcomeDocId}
+      : {
+          type: 'generated-index' as const,
+          title: group.title,
+          slug: `/dai-su-xanh/${group.id}`,
+        }),
   },
   items: group.topics.flatMap((topic) => {
     if (topic.articles.length === 0) {
