@@ -198,7 +198,7 @@ test('Ambassador article cards keep a visible keyboard focus outline', async ({
   await expect(card).toHaveCSS('outline-color', 'rgb(0, 79, 122)');
 });
 
-test('Đại sứ xanh opens only the active topic articles at level three', async ({
+test('Đại sứ xanh lists its guides directly under the main groups', async ({
   page,
   isMobile,
 }) => {
@@ -211,7 +211,7 @@ test('Đại sứ xanh opens only the active topic articles at level three', asy
   ).toBeVisible();
   await expect(
     sidebar.getByText('Chào mừng Đại sứ xanh', {exact: true}),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect(
     sidebar.getByText('Khái niệm & giá trị nền tảng', {exact: true}),
   ).toBeVisible();
@@ -220,7 +220,8 @@ test('Đại sứ xanh opens only the active topic articles at level three', asy
   ).toBeVisible();
   await expect(
     sidebar.getByText('Cách lấy hình ảnh/video', {exact: true}),
-  ).toHaveCount(0);
+  ).toBeVisible();
+  await expect(sidebar.locator('.menu__list .menu__list .menu__list')).toHaveCount(0);
 });
 
 test('Ambassador sidebar uses compact Antsomi-style hierarchy controls', async ({
@@ -232,27 +233,20 @@ test('Ambassador sidebar uses compact Antsomi-style hierarchy controls', async (
 
   const sidebar = page.locator('.theme-doc-sidebar-container');
   const group = sidebar.getByText('Gia nhập hệ sinh thái', {exact: true});
-  const topic = sidebar.getByText('Chào mừng Đại sứ xanh', {exact: true});
-  const topicCaret = topic.locator('../..').locator('.menu__caret');
   const groupCaret = group.locator('../..').locator('.menu__caret');
   const article = sidebar.getByText('Khái niệm & giá trị nền tảng', {
     exact: true,
   });
 
   await expect(group).toHaveCSS('font-weight', '700');
-  await expect(topicCaret).toHaveAttribute('aria-expanded', 'true');
-  expect(
-    await topicCaret.evaluate(
-      (caret) => getComputedStyle(caret, '::before').backgroundSize,
-    ),
-  ).toBe('12px 12px');
+  await expect(groupCaret).toHaveAttribute('aria-expanded', 'true');
   await expect(article).toHaveCSS('font-size', '14px');
   await expect(groupCaret).toHaveCSS('opacity', '0');
   await group.hover();
   await expect(groupCaret).toHaveCSS('opacity', '1');
 });
 
-test('Ambassador leaf topics align with expandable topics at level two', async ({
+test('Ambassador guide links align directly under their main groups', async ({
   page,
   isMobile,
 }) => {
@@ -260,25 +254,26 @@ test('Ambassador leaf topics align with expandable topics at level two', async (
   await page.goto(`${sitePath}${ambassadorStart}`);
 
   const sidebar = page.locator('.theme-doc-sidebar-container');
-  const expandableTopic = sidebar.getByText('Hướng dẫn quản lý tài khoản', {
-    exact: true,
-  });
-  const leafTopics = ['Câu hỏi thường gặp', 'Quy định xử lý vi phạm'];
+  const directLinks = [
+    'Thay đổi thông tin tài khoản',
+    'Câu hỏi thường gặp',
+    'Quy định xử lý vi phạm',
+  ];
+  const boxes = await Promise.all(
+    directLinks.map((label) =>
+      sidebar.getByText(label, {exact: true}).boundingBox(),
+    ),
+  );
 
-  const expandableBox = await expandableTopic.boundingBox();
-  expect(expandableBox).not.toBeNull();
-
-  for (const label of leafTopics) {
-    const leafBox = await sidebar
-      .getByText(label, {exact: true})
-      .boundingBox();
-
-    expect(leafBox).not.toBeNull();
-    expect(Math.abs((leafBox?.x ?? 0) - (expandableBox?.x ?? 0))).toBeLessThanOrEqual(1);
-  }
+  expect(boxes.every(Boolean)).toBe(true);
+  expect(boxes.map((box) => box?.x)).toEqual([
+    boxes[0]?.x,
+    boxes[0]?.x,
+    boxes[0]?.x,
+  ]);
 });
 
-test('Ambassador sidebar keeps level-three articles open for one topic at a time', async ({
+test('Ambassador sidebar shows articles from former topics as siblings', async ({
   page,
   isMobile,
 }) => {
@@ -286,12 +281,6 @@ test('Ambassador sidebar keeps level-three articles open for one topic at a time
   await page.goto(`${sitePath}${ambassadorWelcomeArticle}`);
 
   const sidebar = page.locator('.theme-doc-sidebar-container');
-  const welcomeCaret = sidebar.getByRole('button', {
-    name: /Chào mừng Đại sứ xanh/,
-  });
-  const sharingCaret = sidebar.getByRole('button', {
-    name: /Chia sẻ bài viết & nội dung/,
-  });
   const welcomeArticle = sidebar.getByText('Khái niệm & giá trị nền tảng', {
     exact: true,
   });
@@ -299,15 +288,7 @@ test('Ambassador sidebar keeps level-three articles open for one topic at a time
     exact: true,
   });
 
-  await expect(welcomeCaret).toHaveAttribute('aria-expanded', 'true');
   await expect(welcomeArticle).toBeVisible();
-  await expect(sharingArticle).toBeHidden();
-
-  await sharingCaret.click();
-
-  await expect(sharingCaret).toHaveAttribute('aria-expanded', 'true');
-  await expect(welcomeCaret).toHaveAttribute('aria-expanded', 'false');
-  await expect(welcomeArticle).toBeHidden();
   await expect(sharingArticle).toBeVisible();
 });
 
@@ -324,6 +305,9 @@ test('sidebar is scoped to the selected audience and shows two levels', async ({
   ).toBeVisible();
   await expect(
     sidebar.getByText('Chào mừng Đại sứ xanh', {exact: true}),
+  ).toHaveCount(0);
+  await expect(
+    sidebar.getByText('Khái niệm & giá trị nền tảng', {exact: true}),
   ).toBeVisible();
   await expect(sidebar.getByText('Nhà lắp đặt', {exact: true})).toHaveCount(0);
   await expect(sidebar.getByText('Khách hàng cuối', {exact: true})).toHaveCount(
@@ -590,7 +574,7 @@ test('documentation uses the approved spacious three-column DAT layout', async (
       .first(),
   ).toHaveCSS('color', 'rgb(0, 109, 168)');
 
-  await page.goto(`${sitePath}${ambassadorWelcomeArticle}`);
+  await page.goto(`${sitePath}${ambassadorStart}/tao-tai-khoan`);
   const activeDoc = page
     .locator(
       '.theme-doc-sidebar-menu .menu__link--active:not(.menu__link--sublist)',
