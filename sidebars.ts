@@ -16,25 +16,20 @@ const daiSuXanhSidebar = ambassadorGuideGroups.map((group) => ({
     title: group.title,
     slug: `/dai-su-xanh/${group.id}`,
   },
-  items: group.topics.map((topic) => {
-    const id = topicDocId(topic.groupId, topic.id);
-
+  items: group.topics.flatMap((topic) => {
     if (topic.articles.length === 0) {
-      return {type: 'doc' as const, id, label: topic.title};
+      return [{
+        type: 'doc' as const,
+        id: topicDocId(topic.groupId, topic.id),
+        label: topic.title,
+      }];
     }
 
-    return {
-      type: 'category' as const,
-      label: topic.title,
-      collapsible: true,
-      collapsed: true,
-      link: {type: 'doc' as const, id},
-      items: topic.articles.map((article) => ({
-        type: 'doc' as const,
-        id: `dai-su-xanh/${topic.groupId}/${topic.id}/${article.id}`,
-        label: article.title,
-      })),
-    };
+    return topic.articles.map((article) => ({
+      type: 'doc' as const,
+      id: `dai-su-xanh/${topic.groupId}/${topic.id}/${article.id}`,
+      label: article.title,
+    }));
   }),
 }));
 
