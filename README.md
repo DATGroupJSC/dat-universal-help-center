@@ -14,7 +14,7 @@ docs/
 └── ho-tro/            # Hỗ trợ chung cho mọi nhóm
 ```
 
-Khi người đọc chọn một nhóm, cột trái chỉ hiển thị bài của nhóm đó. Riêng Đại sứ xanh, menu mặc định hiển thị hai cấp: bốn nhóm lớn và các chủ đề nhỏ; khi mở một chủ đề, các bài chi tiết của riêng chủ đề đó xuất hiện ở cấp ba. Không để bài của nhóm này trong thư mục của nhóm khác.
+Khi người đọc chọn một nhóm, cột trái chỉ hiển thị nội dung của nhóm đó. Riêng Đại sứ xanh, menu hiển thị hai cấp: bốn nhóm lớn và các bài/chủ đề trực tiếp thuộc nhóm. Các bài chi tiết được đặt thẳng dưới nhóm lớn để người đọc không phải mở thêm cấp menu. Một số trang tổng hợp chủ đề vẫn được giữ để hỗ trợ điều hướng bằng thẻ nội dung và các đường dẫn hiện có. Không để bài của nhóm này trong thư mục của nhóm khác.
 
 Chỉ thêm quy trình, chính sách, SLA, giá, bảo hành hoặc thông số khi có nguồn chính thức đã được content owner phê duyệt. Không tự điền URL đăng ký, hoa hồng, quyền lợi hay kênh hỗ trợ tạm.
 

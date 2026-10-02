@@ -348,12 +348,25 @@ body {
   line-height: 1.35;
 }
 
+.theme-doc-sidebar-menu .ambassador-sidebar-group .theme-doc-sidebar-item-link-level-2 > .menu__link {
+  padding: 0.45rem 0.6rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
 .theme-doc-sidebar-menu > .ambassador-sidebar-group.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link--active,
 .theme-doc-sidebar-menu .ambassador-sidebar-group .theme-doc-sidebar-item-category-level-2 > .menu__list-item-collapsible > .menu__link--active {
   color: var(--dat-blue-dark);
 }
 
 .theme-doc-sidebar-menu .ambassador-sidebar-group .theme-doc-sidebar-item-category-level-2 > .menu__list > .menu__list-item > .menu__link--active {
+  color: var(--dat-blue-deep);
+  background: var(--dat-sky-50);
+  border-left: 3px solid var(--dat-orange);
+}
+
+.theme-doc-sidebar-menu .ambassador-sidebar-group .theme-doc-sidebar-item-link-level-2 > .menu__link--active {
   color: var(--dat-blue-deep);
   background: var(--dat-sky-50);
   border-left: 3px solid var(--dat-orange);

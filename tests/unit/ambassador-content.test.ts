@@ -36,10 +36,9 @@ describe('Đại sứ xanh content navigation', () => {
     expect(JSON.stringify(articles)).not.toMatch(/https?:\/\//);
   });
 
-  it('shows article links at level three under their topic only', () => {
+  it('lists article links directly under the four top-level groups', () => {
     const groups = sidebars.daiSuXanhSidebar as AmbassadorSidebarItem[];
-    const topics = groups.flatMap((group) => group.items ?? []);
-    const articles = topics.flatMap((topic) => topic.items ?? []);
+    const entries = groups.flatMap((group) => group.items ?? []);
 
     expect(groups.map((group) => group.label)).toEqual([
       'Gia nhập hệ sinh thái',
@@ -50,16 +49,15 @@ describe('Đại sứ xanh content navigation', () => {
     expect(groups.every((group) => group.className === 'ambassador-sidebar-group')).toBe(
       true,
     );
-    expect(topics).toHaveLength(16);
-    expect(articles.map((article) => article.id)).toEqual(
+    expect(entries.map((entry) => entry.id)).toEqual(
       ambassadorGuideGroups.flatMap((group) => group.topics.flatMap((topic) =>
-        topic.articles.map((article) => `dai-su-xanh/${group.id}/${topic.id}/${article.id}`),
+        topic.articles.length > 0
+          ? topic.articles.map((article) => `dai-su-xanh/${group.id}/${topic.id}/${article.id}`)
+          : [`dai-su-xanh/${group.id}/${topic.id}/index`],
       )),
     );
-    expect(articles.every((article) => article.type === 'doc')).toBe(true);
-    expect(
-      topics.find((topic) => topic.label === 'Chào mừng Đại sứ xanh')?.items,
-    ).toEqual(
+    expect(entries.every((entry) => entry.type === 'doc' && !entry.items?.length)).toBe(true);
+    expect(entries).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           label: 'Khái niệm & giá trị nền tảng',
