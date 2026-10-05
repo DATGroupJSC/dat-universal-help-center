@@ -20,6 +20,8 @@ Chỉ thêm quy trình, chính sách, SLA, giá, bảo hành hoặc thông số 
 
 ## Thêm hoặc sửa một bài
 
+Các trang chưa có nội dung được tạm ẩn bằng danh sách `src/data/hiddenDocs.json`; file MDX vẫn được giữ. Sau khi có nội dung được duyệt, xóa doc ID của bài (và ID `/index` của chủ đề nếu đang ẩn) khỏi danh sách để khôi phục menu, route và tìm kiếm. Xem [phạm vi và cách khôi phục](planning/specs/2026-10-05-hide-unfinished-articles.md).
+
 Khu vực Nhà lắp đặt gồm năm nhóm: Bắt đầu với DAT Universal; Hướng dẫn sử dụng nền tảng (có sáu bước thao tác); SLA và cảnh báo; Tiêu chuẩn lắp đặt; Trung tâm hỗ trợ. Danh mục nằm trong `src/data/installerContent.ts`, bài viết trong `docs/nha-lap-dat/`. Các bài chưa có nội dung chính thức hiển thị Coming soon; thay nội dung ngay trong file MDX tương ứng khi đã được duyệt. Cấu trúc này được chốt theo agenda đào tạo Installer trong phiên làm việc.
 
 1. Trên GitHub, tạo branch mới từ `main`, ví dụ `content/huong-dan-referral`.
@@ -64,6 +66,7 @@ npm run test:e2e
 
 ## Quyết định giao diện
 
+- [2026-10-05 — Tạm ẩn các bài chưa có nội dung](planning/specs/2026-10-05-hide-unfinished-articles.md): 32 bài và ba trang chủ đề trống; giữ file nguồn, loại khỏi menu, tìm kiếm và production build.
 - [2026-10-05 — Cập nhật bốn bài Nhà lắp đặt từ các tài liệu Done](planning/specs/2026-10-05-installer-done-content.md): nguồn tại tab Installers, dòng 3/8/11/17/18; tổng quan, quyền lợi và trách nhiệm, chính sách hợp tác, tạo tài khoản và đăng nhập. Ghi rõ nguồn và phạm vi sử dụng ảnh hướng dẫn.
 - [2026-08-13 — Lề trang và vị trí tên website](planning/specs/2026-08-13-antsomi-layout-and-identity.md): khung desktop căn giữa, ba cột thoáng hơn; tên đầy đủ nằm ở đầu nội dung thay vì cạnh menu.
 - [2026-08-13 — Kế hoạch triển khai lề Antsomi](planning/plans/2026-08-13-antsomi-gutters-and-header-identity.md): kiểm tra và thay đổi theme cho shell tài liệu.

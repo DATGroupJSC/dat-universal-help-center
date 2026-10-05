@@ -1,5 +1,7 @@
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import {GlobExcludeDefault} from '@docusaurus/utils';
+import {hiddenDocs, isPublicDocPath} from './src/data/contentVisibility';
 
 const ambassadorStart =
   '/huong-dan/dai-su-xanh/gia-nhap-he-sinh-thai/chao-mung-dai-su-xanh';
@@ -35,6 +37,7 @@ const config: Config = {
       {
         docs: {
           routeBasePath: 'huong-dan',
+          exclude: [...GlobExcludeDefault, ...hiddenDocs.map(id => `${id}.mdx`)],
           sidebarPath: './sidebars.ts',
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
@@ -111,19 +114,19 @@ const config: Config = {
             from: '/huong-dan/dai-su-xanh/gioi-thieu-khach-hang/tong-quan',
           },
           {
-            to: '/huong-dan/dai-su-xanh/quy-uoc-hop-tac/chinh-sach-hoa-hong',
+            to: '/huong-dan/dai-su-xanh/quy-uoc-hop-tac',
             from: '/huong-dan/referral-hoa-hong',
           },
           {
-            to: '/huong-dan/dai-su-xanh/quy-uoc-hop-tac/chinh-sach-hoa-hong',
+            to: '/huong-dan/dai-su-xanh/quy-uoc-hop-tac',
             from: '/huong-dan/referral-hoa-hong/tong-quan',
           },
           {
-            to: '/huong-dan/dai-su-xanh/quy-uoc-hop-tac/chinh-sach-hoa-hong',
+            to: '/huong-dan/dai-su-xanh/quy-uoc-hop-tac',
             from: '/huong-dan/dai-su-xanh/referral-hoa-hong',
           },
           {
-            to: '/huong-dan/dai-su-xanh/quy-uoc-hop-tac/chinh-sach-hoa-hong',
+            to: '/huong-dan/dai-su-xanh/quy-uoc-hop-tac',
             from: '/huong-dan/dai-su-xanh/referral-hoa-hong/tong-quan',
           },
           {
@@ -195,7 +198,7 @@ const config: Config = {
           label: 'Hỗ trợ',
           position: 'left',
         },
-      ],
+      ].filter(item => isPublicDocPath(item.to)).map(item => ({...item, position: 'left' as const})),
     },
     footer: {
       style: 'dark',

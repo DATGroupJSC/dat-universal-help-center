@@ -1,6 +1,6 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
-import {ambassadorGuideGroups} from './src/data/ambassadorContent';
-import {installerGuideGroups, installerSteps} from './src/data/installerContent';
+import {visibleAmbassadorGuideGroups} from './src/data/ambassadorContent';
+import {visibleInstallerGuideGroups, installerSteps} from './src/data/installerContent';
 
 const topicDocId = (groupId: string, topicId: string) =>
   `dai-su-xanh/${groupId}/${topicId}/index`;
@@ -9,7 +9,7 @@ const welcomeDocId = topicDocId(
   'chao-mung-dai-su-xanh',
 );
 
-const daiSuXanhSidebar = ambassadorGuideGroups.map((group) => ({
+const daiSuXanhSidebar = visibleAmbassadorGuideGroups.map((group) => ({
   type: 'category' as const,
   label: group.title,
   className: 'ambassador-sidebar-group',
@@ -43,7 +43,7 @@ const daiSuXanhSidebar = ambassadorGuideGroups.map((group) => ({
 
 const sidebars: SidebarsConfig = {
   daiSuXanhSidebar,
-  nhaLapDatSidebar: installerGuideGroups.map(group => ({
+  nhaLapDatSidebar: visibleInstallerGuideGroups.map(group => ({
     type: 'category' as const,
     label: group.title,
     className: 'ambassador-sidebar-group',

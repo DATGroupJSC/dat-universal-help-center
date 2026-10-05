@@ -1,3 +1,5 @@
+import {isPublicDocPath} from './contentVisibility';
+
 export const audienceHubs = [
   {
     title: 'Đại sứ xanh',
@@ -21,6 +23,8 @@ export const audienceHubs = [
     status: 'Đang bổ sung',
   },
 ] as const;
+
+export const visibleAudienceHubs = audienceHubs.filter(hub => isPublicDocPath(hub.to));
 
 export type SiteLinks = {
   registrationUrl: string;

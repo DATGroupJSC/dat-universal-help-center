@@ -1,3 +1,5 @@
+import {isDocVisible} from './contentVisibility';
+
 export type AmbassadorArticleKind = 'guide' | 'video' | 'document';
 
 export type AmbassadorArticle = {
@@ -192,8 +194,19 @@ export const ambassadorGuideGroups: readonly AmbassadorGroup[] = [
   },
 ];
 
+export const visibleAmbassadorGuideGroups = ambassadorGuideGroups.map(group => ({
+  ...group,
+  topics: group.topics
+    .filter(topic => isDocVisible(`dai-su-xanh/${group.id}/${topic.id}/index`))
+    .map(topic => ({
+      ...topic,
+      articles: topic.articles.filter(article =>
+        isDocVisible(`dai-su-xanh/${group.id}/${topic.id}/${article.id}`)),
+    })),
+})).filter(group => group.topics.length > 0);
+
 export function findAmbassadorTopic(id: string) {
-  return ambassadorGuideGroups
+  return visibleAmbassadorGuideGroups
     .flatMap((group) => group.topics)
     .find((topic) => topic.id === id);
 }
