@@ -64,6 +64,7 @@ npm run test:e2e
 
 ## Quyết định giao diện
 
+- [2026-10-05 — Cập nhật bốn bài Nhà lắp đặt từ các tài liệu Done](planning/specs/2026-10-05-installer-done-content.md): nguồn tại tab Installers, dòng 3/8/11/17/18; tổng quan, quyền lợi và trách nhiệm, chính sách hợp tác, tạo tài khoản và đăng nhập. Ghi rõ nguồn và phạm vi sử dụng ảnh hướng dẫn.
 - [2026-08-13 — Lề trang và vị trí tên website](planning/specs/2026-08-13-antsomi-layout-and-identity.md): khung desktop căn giữa, ba cột thoáng hơn; tên đầy đủ nằm ở đầu nội dung thay vì cạnh menu.
 - [2026-08-13 — Kế hoạch triển khai lề Antsomi](planning/plans/2026-08-13-antsomi-gutters-and-header-identity.md): kiểm tra và thay đổi theme cho shell tài liệu.
 - [2026-08-14 — Kế hoạch triển khai nội dung Đại sứ xanh](planning/plans/2026-08-14-dai-su-xanh-content-architecture.md): tạo menu hai cấp, trang chủ đề, bài viết “Đang cập nhật” và chuyển hướng link cũ.
