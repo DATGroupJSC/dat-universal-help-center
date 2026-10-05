@@ -1,3 +1,5 @@
+import {isDocVisible} from './contentVisibility';
+
 export const installerGuideGroups = [
   {
     "id": "bat-dau",
@@ -94,6 +96,12 @@ export const installerGuideGroups = [
     ]
   }
 ];
+
+export const visibleInstallerGuideGroups = installerGuideGroups.map(group => ({
+  ...group,
+  articles: group.articles.filter(article =>
+    isDocVisible(`nha-lap-dat/${group.id}/${article.id}`)),
+})).filter(group => group.articles.length > 0 || group.id === 'su-dung-nen-tang');
 
 export const installerSteps = [
   {

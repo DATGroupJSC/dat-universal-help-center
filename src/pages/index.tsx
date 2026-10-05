@@ -1,6 +1,6 @@
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
-import {audienceHubs} from '@site/src/data/site';
+import {visibleAudienceHubs} from '@site/src/data/site';
 import styles from './index.module.css';
 
 export default function HomePage() {
@@ -27,7 +27,7 @@ export default function HomePage() {
             </div>
 
             <div className={styles.audienceGrid}>
-              {audienceHubs.map((hub) => (
+              {visibleAudienceHubs.map((hub) => (
                 <Link className={styles.audienceCard} key={hub.title} to={hub.to}>
                   <span className={styles.status}>{hub.status}</span>
                   <h3>{hub.title}</h3>

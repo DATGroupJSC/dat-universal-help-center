@@ -19,7 +19,7 @@ describe('DAT Universal help-center configuration', () => {
     expect(config.favicon).toBe('img/favicon.DujayeFC.png');
   });
 
-  it('exposes the five approved navigation destinations', () => {
+  it('exposes only navigation destinations with published content', () => {
     const navbar = config.themeConfig?.navbar as {
       items?: Array<{label?: string}>;
     };
@@ -28,7 +28,6 @@ describe('DAT Universal help-center configuration', () => {
       'Trang chủ',
       'Đại sứ xanh',
       'Nhà lắp đặt',
-      'Khách hàng cuối',
       'Hỗ trợ',
     ]);
   });

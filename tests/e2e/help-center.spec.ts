@@ -35,7 +35,7 @@ test('DAT corporate footer exposes public contact information and the supplied f
   }
 });
 
-test('homepage routes users to the three DAT Universal audiences', async ({
+test('homepage routes users only to audiences with content', async ({
   page,
 }) => {
   await page.goto(`${sitePath}/`);
@@ -45,13 +45,14 @@ test('homepage routes users to the three DAT Universal audiences', async ({
   ).toBeVisible();
 
   const main = page.locator('main');
-  for (const label of ['Đại sứ xanh', 'Nhà lắp đặt', 'Khách hàng cuối']) {
+  for (const label of ['Đại sứ xanh', 'Nhà lắp đặt']) {
     await expect(
       main.getByRole('link', {name: new RegExp(label)}),
     ).toHaveCount(1);
   }
 
-  await expect(main.getByText('Đang bổ sung')).toHaveCount(2);
+  await expect(main.getByRole('link', {name: /Khách hàng cuối/})).toHaveCount(0);
+  await expect(main.getByText('Đang bổ sung')).toHaveCount(1);
   await expect(
     main.getByRole('link', {name: 'Đăng ký Đại sứ xanh'}),
   ).toHaveCount(0);
@@ -66,10 +67,6 @@ test('each audience has a safe public starting page', async ({page}) => {
     [
       '/huong-dan/nha-lap-dat/bat-dau-hop-tac',
       'Hướng dẫn dành cho Nhà lắp đặt',
-    ],
-    [
-      '/huong-dan/khach-hang/tim-hieu-giai-phap',
-      'Hướng dẫn dành cho Khách hàng cuối',
     ],
   ]) {
     await page.goto(`${sitePath}${path}`);
@@ -109,11 +106,11 @@ test('published Ambassador articles render their approved media', async ({page})
   );
 });
 
-test('topic cards use compact six-column layout without helper text or status labels', async ({page}) => {
+test('topic cards show only authored content without helper text or status labels', async ({page}) => {
   await page.setViewportSize({width: 1920, height: 900});
   await page.goto(`${sitePath}${ambassadorStart}`);
   const cards = page.locator('.ambassador-topic-card');
-  await expect(cards).toHaveCount(6);
+  await expect(cards).toHaveCount(3);
   await expect(page.locator('.ambassador-topic-cards__intro')).toHaveCount(0);
   await expect(page.getByRole('heading', {name: 'Chọn nội dung cần xem'})).toHaveCount(0);
   await expect(cards.first().locator('.ambassador-topic-card__kind')).toHaveCount(0);
@@ -128,7 +125,7 @@ test('topic cards use compact six-column layout without helper text or status la
     }
     return Math.max(...rows.values());
   });
-  expect(columns).toBe(6);
+  expect(columns).toBe(3);
 });
 
 test('former Đại sứ xanh article URL redirects to its replacement article', async ({
@@ -148,19 +145,24 @@ test('former Đại sứ xanh article URL redirects to its replacement article',
   ).toBeVisible();
 });
 
-test('unpublished Ambassador articles show a Coming soon state without a sample', async ({
+test('unfinished articles are absent from navigation and direct public access', async ({
   page,
 }) => {
-  await page.goto(
-    `${sitePath}${ambassadorStart}/gioi-thieu-nen-tang`,
-  );
-
-  const article = page.locator('article');
-  await expect(article.getByRole('heading', {name: 'Coming soon'})).toBeVisible();
-  await expect(article).toContainText(
-    'DAT Universal đang cập nhật nội dung chính thức cho mục này.',
-  );
-  await expect(article.locator('.ambassador-sample-article, iframe, video')).toHaveCount(0);
+  await page.goto(`${sitePath}${ambassadorStart}`);
+  await expect(page.getByRole('link', {name: 'Giới thiệu nền tảng', exact: true})).toHaveCount(0);
+  await expect(page.getByRole('link', {name: 'Hướng dẫn nền tảng', exact: true}).first()).toBeVisible();
+  for (const path of [
+    `${ambassadorStart}/gioi-thieu-nen-tang`,
+    '/huong-dan/nha-lap-dat/bat-dau/ho-tro-tai-chinh',
+    '/huong-dan/khach-hang/tim-hieu-giai-phap',
+  ]) {
+    const response = await page.goto(`${sitePath}${path}`);
+    expect(response?.status()).toBe(404);
+    await expect(page.getByRole('heading', {name: 'Coming soon'})).toHaveCount(0);
+  }
+  await page.goto(`${sitePath}/huong-dan/nha-lap-dat/bat-dau-hop-tac`);
+  await expect(page.locator('.ambassador-topic-card')).toHaveCount(2);
+  await expect(page.getByRole('link', {name: 'Tiêu chuẩn lắp đặt', exact: true})).toHaveCount(0);
 });
 
 test('Writer-authored Ambassador detail articles render their published Markdown content', async ({
@@ -217,7 +219,7 @@ test('Đại sứ xanh lists its guides directly under the main groups', async (
   ).toBeVisible();
   await expect(
     sidebar.getByText('Giới thiệu nền tảng', {exact: true}),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect(
     sidebar.getByText('Cách lấy hình ảnh/video', {exact: true}),
   ).toBeVisible();

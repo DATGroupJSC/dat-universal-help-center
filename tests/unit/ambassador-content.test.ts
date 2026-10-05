@@ -2,7 +2,7 @@ import {access, readFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {describe, expect, it} from 'vitest';
 import sidebars from '../../sidebars';
-import {ambassadorGuideGroups} from '../../src/data/ambassadorContent';
+import {ambassadorGuideGroups, visibleAmbassadorGuideGroups} from '../../src/data/ambassadorContent';
 import {installerSteps} from '../../src/data/installerContent';
 
 type AmbassadorSidebarItem = {
@@ -50,7 +50,7 @@ describe('Đại sứ xanh content navigation', () => {
       true,
     );
     expect(entries.map((entry) => entry.id)).toEqual(
-      ambassadorGuideGroups.flatMap((group) => group.topics.flatMap((topic) =>
+      visibleAmbassadorGuideGroups.flatMap((group) => group.topics.flatMap((topic) =>
         topic.articles.length > 0
           ? topic.articles.map((article) => `dai-su-xanh/${group.id}/${topic.id}/${article.id}`)
           : [`dai-su-xanh/${group.id}/${topic.id}/index`],
