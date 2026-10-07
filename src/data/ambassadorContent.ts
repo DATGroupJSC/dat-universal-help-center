@@ -101,6 +101,16 @@ export const ambassadorGuideGroups: readonly AmbassadorGroup[] = [
         ],
       },
       {
+        id: 'tu-van-va-trien-khai',
+        groupId: 'kien-thuc-giai-phap',
+        title: 'Tư vấn và triển khai',
+        articles: [
+          {id: 'huong-dan-tu-van-va-bao-gia-so-bo', title: 'Hướng dẫn tư vấn và báo giá sơ bộ', kind: 'guide', status: published},
+          {id: 'quy-trinh-va-thoi-gian-lap-dat', title: 'Quy trình và thời gian lắp đặt', kind: 'guide', status: published},
+          {id: 'chinh-sach-bao-hanh', title: 'Chính sách bảo hành', kind: 'guide', status: published},
+        ],
+      },
+      {
         id: 'du-an-thuc-te',
         groupId: 'kien-thuc-giai-phap',
         title: 'Dự án thực tế',
