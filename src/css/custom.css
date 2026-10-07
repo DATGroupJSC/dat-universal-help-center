@@ -438,6 +438,53 @@ body {
   margin-bottom: 1.25rem;
 }
 
+.theme-doc-markdown:has(> .source-document) h1 {
+  color: var(--dat-blue-dark);
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+  line-height: 1.3;
+  text-align: center;
+}
+
+.source-document h2 {
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.source-document h3 {
+  font-size: 1.125rem;
+}
+
+.source-purpose,
+.source-step {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.source-purpose {
+  background: #e9f3fc;
+}
+
+.source-step {
+  background: #f5f6f8;
+}
+
+.source-purpose > :last-child,
+.source-step > :last-child {
+  margin-bottom: 0;
+}
+
+.source-step h3:first-child {
+  margin-top: 0;
+}
+
+.source-document .theme-admonition > div:first-child {
+  text-transform: none;
+}
+
+.source-document a {
+  overflow-wrap: anywhere;
+}
+
 .theme-doc-markdown img {
   display: block;
   max-width: 100%;

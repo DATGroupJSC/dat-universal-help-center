@@ -1,10 +1,26 @@
 import {expect, test} from '@playwright/test';
+import verbatimSources from '../fixtures/source-verbatim-20261007.json';
 
 const sitePath = '';
 const ambassadorStart =
   '/huong-dan/dai-su-xanh/gia-nhap-he-sinh-thai/chao-mung-dai-su-xanh';
 const ambassadorWelcomeArticle =
   '/huong-dan/dai-su-xanh/gia-nhap-he-sinh-thai/chao-mung-dai-su-xanh/khai-niem-va-gia-tri-nen-tang';
+
+test('source articles retain original wording including titles labels numbering and links', async ({page}) => {
+  const normalize = (text: string) => text.replace(/[\u200b-\u200d\ufeff]/g, '').replace(/\s+/g, ' ').trim();
+  const missing: {path: string; text: string}[] = [];
+  for (const source of verbatimSources) {
+    await page.goto(`/huong-dan/${source.path}`);
+    const rendered = normalize(await page.locator('article').innerText());
+    for (const paragraph of source.paragraphs) {
+      // Word sometimes stores list bullets as text; HTML renders the same markers outside innerText.
+      const wording = paragraph.replace(/^[•-]\s+/, '');
+      if (!rendered.includes(normalize(wording))) missing.push({path: source.path, text: paragraph});
+    }
+  }
+  expect(missing).toEqual([]);
+});
 
 test('updated guides display every source image at the corresponding step', async ({page}) => {
   const guides = [
@@ -20,7 +36,7 @@ test('updated guides display every source image at the corresponding step', asyn
       const onboarding = page.locator('article table');
       await expect(onboarding).toHaveCount(1);
       await expect(onboarding.locator('tr')).toHaveCount(6);
-      await expect(onboarding.locator('th')).toHaveText(['Thao tác', 'Ai thực hiện', 'Mục tiêu', 'Kết quả']);
+      await expect(onboarding.locator('th')).toHaveText(['THAO TÁC', 'AI THỰC HIỆN', 'MỤC TIÊU', 'KẾT QUẢ']);
       await expect(onboarding).toContainText('Đào tạo trực tuyến, đồng bộ kỹ thuật và chứng nhận');
     }
     await images.evaluateAll(items => {
@@ -48,11 +64,11 @@ test('updated guides display every source image at the corresponding step', asyn
 
 test('article notices render as callouts without exposing Markdown directives', async ({page}) => {
   const articles = [
-    ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/huong-dan-tu-van-va-bao-gia-so-bo', ['Báo giá sơ bộ']],
-    ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/quy-trinh-va-thoi-gian-lap-dat', ['Thời gian tham khảo']],
-    ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/chinh-sach-bao-hanh', ['Thời hạn theo thiết bị cụ thể']],
-    ['nha-lap-dat/bat-dau/chinh-sach-hop-tac', ['Dự án trên 100 kWp']],
-    ['nha-lap-dat/bat-dau/quyen-loi-va-trach-nhiem', ['Xác nhận bàn giao']],
+    ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/huong-dan-tu-van-va-bao-gia-so-bo', ['LƯU Ý:']],
+    ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/quy-trinh-va-thoi-gian-lap-dat', ['Nguyên tắc quan trọng:']],
+    ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/chinh-sach-bao-hanh', ['Lưu ý:']],
+    ['nha-lap-dat/bat-dau/chinh-sach-hop-tac', ['***Quan trọng - Dự án trên 100 kWp:']],
+    ['nha-lap-dat/bat-dau/quyen-loi-va-trach-nhiem', ['Lưu ý:']],
     ['nha-lap-dat/bat-dau/tao-tai-khoan-va-dang-nhap', ['Lưu ý khi đăng ký', 'Lưu ý khi đăng nhập']],
   ] as const;
   for (const [path, titles] of articles) {

@@ -24,7 +24,7 @@ Các đường dẫn MDX trong bảng đều tương đối với `docs/dai-su-x
 - Bài Tạo khách hàng giữ URL và đủ tám bước; bước đầu chuyển sang Chia sẻ → dán link chia sẻ thay cho luồng qua Bài viết cũ. Giữ yêu cầu kiểm tra Mã Đại sứ trước khi nhập thông tin khách hàng.
 - Brochure giữ URL bài cũ, thay tài liệu được dẫn trong bài bằng hai bản SharePoint ngày 03/10/2026. Cột I31 có folder Drive chứa bản cũ tháng 6/8; dùng hai link H31/H32 được tô xanh để xác định phiên bản. File cũ trong repository được bảo toàn.
 - Giữ toàn bộ nội dung nghiệp vụ của ba Word mới: các bước, bảng chỉ số, sáu mốc thời gian, cơ chế bảo hành hai lớp, thời hạn tham khảo và các câu trả lời mẫu. Không suy diễn các mốc tham khảo thành SLA hoặc cam kết cố định.
-- Bảng quy trình năm cột được chuyển thành sáu mục có thời gian, mô tả và lưu ý; các bảng gọn về chỉ số/bảo hành được giữ dưới dạng bảng.
+- Bảng quy trình được giữ đúng năm cột và sáu dòng `01`–`06` như Word; bảng chỉ số/bảo hành giữ nguyên nội dung cột và ô. Giữ đầy đủ tiêu đề, nhãn Mục đích, số mục, URL hiển thị và các khung từng bước theo nguồn.
 - Theo yêu cầu bổ sung ngày 07/10, giữ đủ ảnh gốc và đúng vị trí: bảy ảnh Tạo khách hàng, hai ảnh Tư vấn/báo giá sơ bộ, một sơ đồ Quy trình/thời gian lắp đặt. Tài liệu Chính sách bảo hành không có ảnh. Ảnh trong ô bảng cũng phải được lấy; ảnh kết quả ước tính nằm trong ô bảng ở Bước 3. Các file được sao chép nguyên bản, đối chiếu hash và thứ tự với Word.
 - Danh sách 35 trang tạm ẩn được giữ. Đợt khôi phục text/ảnh cũng rà lại bốn bài Nhà lắp đặt đã cập nhật; xem [đối chiếu nguồn đầy đủ](2026-10-07-source-content-fidelity.md).
 

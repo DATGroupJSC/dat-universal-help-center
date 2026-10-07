@@ -256,7 +256,6 @@ describe('Đại sứ xanh content navigation', () => {
 
   it('keeps repeated login instructions compact and linked to the account guide', async () => {
     const guides = [
-      'gia-nhap-he-sinh-thai/tim-kiem-va-theo-doi-khach-hang/tao-khach-hang.mdx',
       'gia-nhap-he-sinh-thai/tim-kiem-va-theo-doi-khach-hang/theo-doi-trang-thai.mdx',
       'gia-nhap-he-sinh-thai/tim-kiem-va-theo-doi-khach-hang/quan-ly-khach-hang.mdx',
       'gia-nhap-he-sinh-thai/chia-se-bai-viet-va-noi-dung/cach-lay-hinh-anh-video.mdx',
