@@ -6,6 +6,46 @@ const ambassadorStart =
 const ambassadorWelcomeArticle =
   '/huong-dan/dai-su-xanh/gia-nhap-he-sinh-thai/chao-mung-dai-su-xanh/khai-niem-va-gia-tri-nen-tang';
 
+test('updated guides display every source image at the corresponding step', async ({page}) => {
+  const guides = [
+    ['dai-su-xanh/gia-nhap-he-sinh-thai/tim-kiem-va-theo-doi-khach-hang/tao-khach-hang', [2, 3, 4, 5, 6, 7, 8]],
+    ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/huong-dan-tu-van-va-bao-gia-so-bo', [1, 3]],
+    ['nha-lap-dat/bat-dau/tao-tai-khoan-va-dang-nhap', [0, 1, 1, 1, 1, 2, 3, 3, 4, 4, 3]],
+  ] as const;
+  for (const [path, steps] of guides) {
+    await page.goto(`/huong-dan/${path}`);
+    const images = page.locator('article img');
+    await expect(images).toHaveCount(steps.length);
+    if (path.startsWith('nha-lap-dat/')) {
+      const onboarding = page.locator('article table');
+      await expect(onboarding).toHaveCount(1);
+      await expect(onboarding.locator('tr')).toHaveCount(6);
+      await expect(onboarding.locator('th')).toHaveText(['Thao tác', 'Ai thực hiện', 'Mục tiêu', 'Kết quả']);
+      await expect(onboarding).toContainText('Đào tạo trực tuyến, đồng bộ kỹ thuật và chứng nhận');
+    }
+    await images.evaluateAll(items => {
+      for (const item of items) (item as HTMLImageElement).loading = 'eager';
+    });
+    await expect.poll(() => images.evaluateAll(items => items.every(item => {
+      const image = item as HTMLImageElement;
+      return image.complete && image.naturalWidth > 0;
+    }))).toBe(true);
+    const imageSteps = await page.locator('article').evaluate(article => {
+      let step = 0;
+      const result: number[] = [];
+      for (const node of article.querySelectorAll('h2, h3, img')) {
+        if (node.tagName === 'IMG') result.push(step);
+        else {
+          const match = node.textContent?.match(/Bước (\d+)/);
+          if (match) step = Number(match[1]);
+        }
+      }
+      return result;
+    });
+    expect(imageSteps).toEqual(steps);
+  }
+});
+
 test('article notices render as callouts without exposing Markdown directives', async ({page}) => {
   const articles = [
     ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/huong-dan-tu-van-va-bao-gia-so-bo', ['Báo giá sơ bộ']],
