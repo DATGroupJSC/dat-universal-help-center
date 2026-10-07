@@ -87,14 +87,18 @@ test('published Ambassador articles render their approved media', async ({page})
     `${sitePath}/huong-dan/dai-su-xanh/kien-thuc-giai-phap/tai-lieu-giai-phap/brochure`,
   );
   await expect(
-    page.getByRole('link', {name: 'Tải Brochure PDF'}),
+    page.getByRole('link', {name: 'Tải Brochure Khách hàng PDF'}),
     ).toHaveAttribute(
     'href',
-    /\/assets\/files\/brochure-dau-tu-dien-mat-troi-[a-f0-9]+\.pdf$/,
+    /\/assets\/files\/brochure-khach-hang-20261003-[a-f0-9]+\.pdf$/,
   );
   await expect(
-    page.locator('article img[alt^="Trang "][alt*="Brochure đầu tư điện mặt trời cùng DAT Universal"]'),
-  ).toHaveCount(5);
+    page.locator('article img[alt^="Trang "][alt*="Brochure Khách hàng DAT Universal"]'),
+  ).toHaveCount(6);
+  await expect(page.getByRole('link', {name: 'Tải Brochure Đại sứ Xanh PDF'})).toHaveAttribute(
+    'href', /\/assets\/files\/brochure-dai-su-xanh-20261003-[a-f0-9]+\.pdf$/,
+  );
+  await expect(page.locator('article img[alt^="Trang "][alt*="Brochure Đại sứ Xanh DAT Universal"]')).toHaveCount(2);
 
   await page.goto(
     `${sitePath}/huong-dan/dai-su-xanh/kien-thuc-giai-phap/du-an-thuc-te/video-thuc-te`,

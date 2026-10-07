@@ -66,6 +66,7 @@ npm run test:e2e
 
 ## Quyết định giao diện
 
+- [2026-10-07 — Cập nhật các bài Đại sứ Xanh được tô xanh](planning/specs/2026-10-07-green-marked-ambassador-content.md): sửa Tạo khách hàng, thay Brochure bằng hai bản ngày 03/10, thêm tư vấn/báo giá sơ bộ, quy trình/thời gian lắp đặt và chính sách bảo hành.
 - [2026-10-05 — Tạm ẩn các bài chưa có nội dung](planning/specs/2026-10-05-hide-unfinished-articles.md): 32 bài và ba trang chủ đề trống; giữ file nguồn, loại khỏi menu, tìm kiếm và production build.
 - [2026-10-05 — Cập nhật bốn bài Nhà lắp đặt từ các tài liệu Done](planning/specs/2026-10-05-installer-done-content.md): nguồn tại tab Installers, dòng 3/8/11/17/18; tổng quan, quyền lợi và trách nhiệm, chính sách hợp tác, tạo tài khoản và đăng nhập. Ghi rõ nguồn và phạm vi sử dụng ảnh hướng dẫn.
 - [2026-08-13 — Lề trang và vị trí tên website](planning/specs/2026-08-13-antsomi-layout-and-identity.md): khung desktop căn giữa, ba cột thoáng hơn; tên đầy đủ nằm ở đầu nội dung thay vì cạnh menu.

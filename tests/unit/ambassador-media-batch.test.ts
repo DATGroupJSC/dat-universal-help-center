@@ -37,9 +37,10 @@ describe('Đợt bổ sung nội dung và media cho Đại sứ xanh', () => {
   it('đưa đầy đủ media đã duyệt vào sáu bài được cập nhật', () => {
     const expectedAssets = [
       'static/img/ambassador/tao-tai-khoan/buoc-01.png',
-      'static/img/ambassador/tao-khach-hang/buoc-11.png',
-      'static/img/ambassador/brochure/trang-05.png',
-      'static/img/ambassador/brochure/brochure-dau-tu-dien-mat-troi.pdf',
+      'static/img/ambassador/tao-khach-hang-20261007/buoc-6-xac-nhan.png',
+      'static/img/ambassador/brochure/khach-hang-20261003/trang-06.png',
+      'static/img/ambassador/brochure/khach-hang-20261003/brochure-khach-hang-20261003.pdf',
+      'static/img/ambassador/brochure/dai-su-xanh-20261003/brochure-dai-su-xanh-20261003.pdf',
       'static/img/ambassador/thay-doi-thong-tin-tai-khoan/buoc-06.png',
     ];
 
@@ -55,7 +56,7 @@ describe('Đợt bổ sung nội dung và media cho Đại sứ xanh', () => {
         'tim-kiem-va-theo-doi-khach-hang',
         'tao-khach-hang.mdx',
       ),
-    ).toContain('/img/ambassador/tao-khach-hang/buoc-11.png');
+    ).toContain('/img/ambassador/tao-khach-hang-20261007/buoc-6-xac-nhan.png');
     expect(
       readProjectFile(
         'docs',
@@ -64,7 +65,7 @@ describe('Đợt bổ sung nội dung và media cho Đại sứ xanh', () => {
         'tai-lieu-giai-phap',
         'brochure.mdx',
       ),
-    ).toContain('/img/ambassador/brochure/brochure-dau-tu-dien-mat-troi.pdf');
+    ).toContain('/img/ambassador/brochure/khach-hang-20261003/brochure-khach-hang-20261003.pdf');
     expect(
       readProjectFile(
         'docs',
