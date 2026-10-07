@@ -22,6 +22,8 @@ Chỉ thêm quy trình, chính sách, SLA, giá, bảo hành hoặc thông số 
 
 Khung lưu ý có tiêu đề dùng cú pháp `:::note[Tiêu đề]` hoặc `:::caution[Tiêu đề]`, có dòng trống trước/sau nội dung và kết thúc bằng `:::`. Cấu hình hiện tại không nhận cú pháp cũ `:::note Tiêu đề`; phải kiểm tra khung hiển thị đúng trong preview.
 
+Khi chuyển bài từ tài liệu được duyệt, giữ đầy đủ text, bảng, caption và ảnh nguồn theo đúng thứ tự/vị trí bước. Kiểm kê cả ảnh và bảng nằm trong ô bảng hoặc cấu trúc lồng của Word; không chỉ đọc các paragraph ngoài bảng. Trước khi xuất bản, đối chiếu số lượng, thứ tự và file ảnh với nguồn, rồi kiểm tra toàn bài trên desktop/mobile. Không tự bỏ ảnh hoặc rút gọn nội dung nguồn; nếu nguồn có vấn đề cần xử lý, ghi rõ để content owner quyết định.
+
 Các trang chưa có nội dung được tạm ẩn bằng danh sách `src/data/hiddenDocs.json`; file MDX vẫn được giữ. Sau khi có nội dung được duyệt, xóa doc ID của bài (và ID `/index` của chủ đề nếu đang ẩn) khỏi danh sách để khôi phục menu, route và tìm kiếm. Xem [phạm vi và cách khôi phục](planning/specs/2026-10-05-hide-unfinished-articles.md).
 
 Khu vực Nhà lắp đặt gồm năm nhóm: Bắt đầu với DAT Universal; Hướng dẫn sử dụng nền tảng (có sáu bước thao tác); SLA và cảnh báo; Tiêu chuẩn lắp đặt; Trung tâm hỗ trợ. Danh mục nằm trong `src/data/installerContent.ts`, bài viết trong `docs/nha-lap-dat/`. Các bài chưa có nội dung chính thức hiển thị Coming soon; thay nội dung ngay trong file MDX tương ứng khi đã được duyệt. Cấu trúc này được chốt theo agenda đào tạo Installer trong phiên làm việc.
@@ -68,6 +70,7 @@ npm run test:e2e
 
 ## Quyết định giao diện
 
+- [2026-10-07 — Khôi phục đầy đủ text và ảnh nguồn](planning/specs/2026-10-07-source-content-fidelity.md): bổ sung 11 ảnh bị thiếu trong ba bài, bảng onboarding và caption; đối chiếu toàn bộ chín Word cùng hai Brochure đã dùng trong hai đợt cập nhật.
 - [2026-10-07 — Cập nhật các bài Đại sứ Xanh được tô xanh](planning/specs/2026-10-07-green-marked-ambassador-content.md): sửa Tạo khách hàng, thay Brochure bằng hai bản ngày 03/10, thêm tư vấn/báo giá sơ bộ, quy trình/thời gian lắp đặt và chính sách bảo hành.
 - [2026-10-05 — Tạm ẩn các bài chưa có nội dung](planning/specs/2026-10-05-hide-unfinished-articles.md): 32 bài và ba trang chủ đề trống; giữ file nguồn, loại khỏi menu, tìm kiếm và production build.
 - [2026-10-05 — Cập nhật bốn bài Nhà lắp đặt từ các tài liệu Done](planning/specs/2026-10-05-installer-done-content.md): nguồn tại tab Installers, dòng 3/8/11/17/18; tổng quan, quyền lợi và trách nhiệm, chính sách hợp tác, tạo tài khoản và đăng nhập. Ghi rõ nguồn và phạm vi sử dụng ảnh hướng dẫn.

@@ -20,9 +20,8 @@ File nguồn là `.xlsx` lưu trên Google Drive, được tải và đọc nguy
 
 - Giữ nội dung nghiệp vụ, số liệu, điều kiện, tỷ lệ, phạm vi tính và thời hạn trong tài liệu nguồn. Các bảng chính sách được trình bày thành mục có nhãn rõ ràng để dễ đọc trên điện thoại.
 - Giữ URL bài hiện có, vị trí menu và nội dung ngoài phạm vi. Bật mục lục trong trang cho bốn bài đã có nội dung.
-- Dùng bốn ảnh từ tài liệu tạo tài khoản: sơ đồ onboarding, trang đăng ký, màn hình OTP với các ô trống, form đăng ký trống.
-- Các ảnh có thông tin hồ sơ, số điện thoại, email, thông tin khách hàng hoặc mã khảo sát không được đưa lên website. Các bước tương ứng vẫn được trình bày bằng chữ.
-- Không dùng ảnh cập nhật hồ sơ có wording ưu đãi thiết bị khác với tài liệu chính sách sửa ngày 22/09. Phần chính sách dùng tài liệu được đánh dấu Done ở dòng 11; ghi rõ ưu đãi 1% trên inverter, Battery và tủ điện do DAT Group cung cấp.
+- Ngày 07/10, theo yêu cầu giữ đầy đủ text và hình, khôi phục đủ chín ảnh từ tài liệu tạo tài khoản và hai ảnh từ tài liệu đăng nhập, đúng thứ tự nguồn. Bổ sung bảng onboarding năm bước, mục Thành phần hồ sơ và các caption còn thiếu. Ảnh được sao chép nguyên bản; đối chiếu hash và thứ tự với hai Word. Ba tài liệu nghiệp vụ còn lại không có ảnh.
+- Ảnh cập nhật hồ sơ trong nguồn ghi ưu đãi 1% cho inverter và battery, không bao gồm tấm PV. Phần chính sách áp dụng vẫn dùng tài liệu Done ở dòng 11: ưu đãi 1% trên inverter, Battery và tủ điện do DAT Group cung cấp. Không sửa ảnh nguồn thành chính sách mới.
 - Ghi chú cũ ở ô G11 yêu cầu chỉnh wording ngày 21/09. Tài liệu chính sách đã được sửa ngày 22/09 và cột I hiện là Done; dùng bản hiện tại theo yêu cầu user.
 
 ## Đưa lên website
