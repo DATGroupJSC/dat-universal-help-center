@@ -6,6 +6,26 @@ const ambassadorStart =
 const ambassadorWelcomeArticle =
   '/huong-dan/dai-su-xanh/gia-nhap-he-sinh-thai/chao-mung-dai-su-xanh/khai-niem-va-gia-tri-nen-tang';
 
+test('article notices render as callouts without exposing Markdown directives', async ({page}) => {
+  const articles = [
+    ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/huong-dan-tu-van-va-bao-gia-so-bo', ['Báo giá sơ bộ']],
+    ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/quy-trinh-va-thoi-gian-lap-dat', ['Thời gian tham khảo']],
+    ['dai-su-xanh/kien-thuc-giai-phap/tu-van-va-trien-khai/chinh-sach-bao-hanh', ['Thời hạn theo thiết bị cụ thể']],
+    ['nha-lap-dat/bat-dau/chinh-sach-hop-tac', ['Dự án trên 100 kWp']],
+    ['nha-lap-dat/bat-dau/quyen-loi-va-trach-nhiem', ['Xác nhận bàn giao']],
+    ['nha-lap-dat/bat-dau/tao-tai-khoan-va-dang-nhap', ['Lưu ý khi đăng ký', 'Lưu ý khi đăng nhập']],
+  ] as const;
+  for (const [path, titles] of articles) {
+    await page.goto(`/huong-dan/${path}`);
+    const article = page.locator('article');
+    await expect(article).not.toContainText(':::');
+    await expect(article.locator('.theme-admonition')).toHaveCount(titles.length);
+    for (const title of titles) {
+      await expect(article.locator('.theme-admonition').filter({hasText: title})).toHaveCount(1);
+    }
+  }
+});
+
 test('DAT corporate footer exposes public contact information and the supplied favicon', async ({
   page,
   isMobile,
