@@ -22,8 +22,18 @@ Link từng nguồn và bài tương ứng được ghi tại [các dòng xanh](
 
 - Khôi phục 11 file ảnh bị thiếu; toàn bộ 21 ảnh Word được đối chiếu hash và thứ tự xuất hiện trong XML nguồn, gồm cả ảnh/bảng lồng. Hai Brochure có đủ tám trang hình và hai PDF giữ nguyên file nguồn.
 - Rà tất cả paragraph và ô bảng của chín Word, kể cả câu ngắn. Bảng onboarding bị bỏ sót được khôi phục đủ bốn cột và năm dòng bước; mục Thành phần hồ sơ và 11 caption được bổ sung đầy đủ.
-- Các khác biệt còn lại là trình bày: tên bài/menu, cấp tiêu đề và số mục, link có nhãn, sửa lỗi gõ `lịnk`/`DAt`, dùng danh sách thay ô bảng, đặt lưu ý trong callout. Nội dung nghiệp vụ, số liệu, điều kiện và các câu trả lời mẫu được giữ. Không tự rút gọn nội dung hoặc bỏ ảnh.
+- PR #43 khôi phục ảnh nhưng còn thay đổi câu chữ ở tiêu đề, nhãn, số mục và URL hiển thị. Theo ảnh user đối chiếu tiếp ngày 07/10, các thay đổi này được sửa lại nguyên văn, kể cả `&`, cách viết hoa, `lịnk`/`DAt` trong nguồn. Menu dùng tên ngắn riêng; phần bài dùng tiêu đề đầy đủ của Word.
 - Kiểm tra hiển thị ảnh ở đúng bước và tải được trên desktop/mobile; regression test kiểm tra đủ ảnh, thứ tự bước và bảng onboarding. Giữ bản sửa callout đã có trên main.
+
+## Kiểm tra nguyên văn sau phản hồi đối chiếu
+
+Bắt đầu từ main `b165cdd` (PR #43 đã merge). Khôi phục đầy đủ tiêu đề “HƯỚNG DẪN TƯ VẤN & BÁO GIÁ SƠ BỘ CHO KHÁCH HÀNG”, nhãn “Mục đích:”, mục “1. KHI KHÁCH HÀNG HỎI GIÁ – ĐSX NÊN TƯ VẤN NHƯ THẾ NÀO?” và URL `https://datuniversal.com/?datid` hiển thị nguyên văn. Rà cùng tiêu chí trên các bài còn lại của hai đợt cập nhật.
+
+- Snapshot test chứa 401 đoạn trích trực tiếp từ chín Word và hash của từng file nguồn, gồm tiêu đề, caption và paragraph trong ô bảng. Đây là bản tham chiếu độc lập với MDX để phát hiện việc rút gọn câu chữ.
+- So text thực tế trong trình duyệt với từng đoạn nguồn, phân biệt hoa/thường, giữ dấu câu và từng chữ. Chỉ chuẩn hóa whitespace do xuống dòng, ký tự neo tiêu đề vô hình của Docusaurus và dấu đầu dòng được HTML thể hiện bằng list marker.
+- Khôi phục bảng Quy trình lắp đặt năm cột, ba bảng Chính sách hợp tác và các bảng hai lớp/bước bảo hành. Các khung Mục đích và hướng dẫn một ô được trình bày bằng khung nền tương ứng với nguồn; thứ tự nội dung và ảnh được giữ.
+- Tiêu đề khung lưu ý dùng đúng nhãn nguồn, không thêm tiêu đề diễn giải; tắt việc tự chuyển thành chữ hoa trong các bài nguồn. Link giữ nguyên URL làm text khi nguồn thể hiện URL.
+- Không thay file ảnh hay PDF trong đợt này; toàn bộ 21 ảnh Word, tám trang hình Brochure và hai PDF đã khôi phục được bảo toàn.
 
 ## Xuất bản
 
